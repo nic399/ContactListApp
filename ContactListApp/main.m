@@ -7,11 +7,63 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InputCollector.h"
+
+void printMenu() {
+    NSLog(@"What would you like to do next?");
+    NSLog(@"new - Create a new contact");
+    NSLog(@"list - List all contacts");
+    NSLog(@"quit - Exit Application");
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        BOOL stayOpen = true;
+        while (stayOpen) {
+            
+            
+            
+            InputCollector* myInputCollector = [InputCollector new];
+            
+            [myInputCollector inputForPrompt:@"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit Application"];
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
