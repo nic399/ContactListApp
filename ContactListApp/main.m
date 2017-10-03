@@ -20,9 +20,10 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         BOOL stayOpen = true;
         NSString* menuPrompt = @"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit Application";
-        //NSDictionary *command = @{@"":@"",
-        
-        
+        NSDictionary * command = @{@"new":@"1", @"list":@"2", @"new":@"3", @"quit":@"4"};
+        InputCollector* myInputCollector = [InputCollector new];
+        NSString* userInput;
+        int userCommand;
         
         
         
@@ -31,11 +32,23 @@ int main(int argc, const char * argv[]) {
             
             
             
-            InputCollector* myInputCollector = [InputCollector new];
             
-            [myInputCollector inputForPrompt:menuPrompt];
+            userInput = [myInputCollector inputForPrompt:menuPrompt];
+            
+            userCommand = [[command valueForKey:userInput] intValue];
+            NSLog(@"%@ %i", userInput, userCommand);
             
             
+            
+            
+            switch (userCommand) {
+                case 4:
+                stayOpen = false;
+                break;
+                
+                default:
+                break;
+            }
             
             
             
