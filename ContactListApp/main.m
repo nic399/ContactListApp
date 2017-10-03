@@ -19,13 +19,21 @@ void printMenu() {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         BOOL stayOpen = true;
+        NSString* menuPrompt = @"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit Application";
+        //NSDictionary *command = @{@"":@"",
+        
+        
+        
+        
+        
+        
         while (stayOpen) {
             
             
             
             InputCollector* myInputCollector = [InputCollector new];
             
-            [myInputCollector inputForPrompt:@"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit Application"];
+            [myInputCollector inputForPrompt:menuPrompt];
             
             
             
