@@ -17,6 +17,7 @@
         if (self) {
             self.name = name;
             self.email = email;
+            self.phoneNumbers = [[NSMutableArray alloc] init];
             
             
             
@@ -28,7 +29,11 @@
 
     
     -(void)printContact {
-        NSLog(@"Name: %@\nEmail: %@", self.name, self.email);
+        NSLog(@"Name: %@       Email: %@", self.name, self.email);
+        NSLog(@"Phone numbers: ");
+        for (int i = 0; i < [self.phoneNumbers count]; i++) {
+            NSLog(@"%@: %@", [[self.phoneNumbers objectAtIndex:i] tag], [[self.phoneNumbers objectAtIndex:i] phoneNumber]);
+        }
     }
     
     -(BOOL)containsString:(NSString *)searchString {
@@ -40,4 +45,19 @@
         }
     }
     
+    -(void)addPhoneNumber:(NSString *)phoneNumber withTag:(NSString *)tag {
+        PhoneNumber* newPhoneNumber = [[PhoneNumber alloc] initWithPhoneNumber:phoneNumber withTag:tag];
+        [self.phoneNumbers addObject:newPhoneNumber];
+        NSLog(@"# of number: %lu", (unsigned long)[self.phoneNumbers count])
+    }
+    
 @end
+
+
+
+
+
+
+
+
+

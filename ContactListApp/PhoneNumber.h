@@ -1,5 +1,5 @@
 //
-//  InputCollector.h
+//  PhoneNumber.h
 //  ContactListApp
 //
 //  Created by Nicholas Fung on 2017-10-03.
@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
-@interface InputCollector : NSObject
+@interface PhoneNumber : NSObject
     
-    @property NSString* userInput;
+    @property NSString* tag;
+    @property NSString* phoneNumber;
     
-    
-    
-    -(NSString*) inputForPrompt: (NSString *) promptString;
+    -(instancetype)initWithPhoneNumber:(NSString*)phoneNumber withTag:(NSString*)tag;
 
 @end

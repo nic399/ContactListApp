@@ -38,9 +38,7 @@
         }
         else {
             Contact* tempContact = [self.contactList objectAtIndex:contactId];
-            NSString* tempName = tempContact.name;
-            NSString* tempEmail = tempContact.email;
-            NSLog(@"\nName: %@\nEmail: %@", tempName, tempEmail);
+            [tempContact printContact];
             return true;
         }
     }
@@ -58,7 +56,7 @@
     }
     
     -(BOOL)emailUsed:(NSString *)search {
-        for (int i = 0; [self.contactList count]; i++) {
+        for (int i = 0; i < [self.contactList count]; i++) {
             if ([[[self.contactList objectAtIndex:i] email] isEqualToString:search]) {
                 return true;
             }
