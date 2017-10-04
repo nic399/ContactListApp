@@ -46,6 +46,7 @@ int main(int argc, const char * argv[]) {
                 Contact* newContact = [[Contact alloc] initWithName:[myInputCollector inputForPrompt:@"Enter the full name of the contact: "] andEmail:[myInputCollector inputForPrompt:@"Enter the email of the contact: "]];
                     NSLog(@"%@: %@", newContact.name, newContact.email);
                     [myContactList addContact:newContact];
+                    [myContactList printContactList];
                 break;
                 }
                 

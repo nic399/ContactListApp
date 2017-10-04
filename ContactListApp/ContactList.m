@@ -26,4 +26,11 @@
         tempContact.printContact;
     }
     
+    -(void)printContactList {
+        for (int i = 0; i < [self.contactList count]; i++) {
+            NSLog(@"%i: %@ ()", i, [[self.contactList objectAtIndex:i] name]);
+            
+        }
+    }
+    
 @end
