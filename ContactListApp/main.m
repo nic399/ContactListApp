@@ -15,12 +15,11 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        NSLog(@"Welcome to the CLI Contact App");
         BOOL stayOpen = true;
         BOOL morePhoneNumbers;
         NSString* menuPrompt = @"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nshow '#' - Show contact number '#'\nsearch 'searchPhrase' - Searches all contacts for 'searchPhrase'\nquit - Exit Application";
-        NSDictionary * command = @{@"new":@"1", @"list":@"2", @"show":@"3", @"quit":@"4", @"search":@"5"};
-        InputCollector* myInputCollector = [InputCollector new];
+        NSDictionary * command = @{@"new":@"1", @"list":@"2", @"show":@"3", @"quit":@"4", @"search":@"5", @"history":@"6"};
+        InputCollector* myInputCollector = [[InputCollector alloc] init];
         NSString* userInput;
         int userCommand;
         ContactList* myContactList = [ContactList new];
@@ -33,20 +32,12 @@ int main(int argc, const char * argv[]) {
         [myContactList addContact:seed3];
         [myContactList printContactList];
         
+        NSLog(@"Welcome to the CLI Contact App");
         
         while (stayOpen) {
-            
-            
-            
-            
             userInput = [myInputCollector inputForPrompt:menuPrompt];
             NSArray *arrayWithInputWords = [userInput componentsSeparatedByString: @" "];
-            
             userCommand = [[command valueForKey:[arrayWithInputWords firstObject]] intValue];
-            NSLog(@"input:%@ key:%i", userInput, userCommand);
-            
-            
-            
             
             switch (userCommand) {
                 
@@ -61,30 +52,24 @@ int main(int argc, const char * argv[]) {
                     
                     NSString* newName =[myInputCollector inputForPrompt:@"Enter the full name of the contact: "];
                     Contact* newContact = [[Contact alloc] initWithName:newName andEmail:newEmail];
-                    NSLog(@"%@: %@", newContact.name, newContact.email);
                     
                     // check if the user wants to add a phone number(s) to the contact
-                    
                     morePhoneNumbers = true;
                     do {
                         NSString* addPhoneNumber = [myInputCollector inputForPrompt:@"Do you want add a(nother) phone number for this contact? (y/n): "];
+                        
                         if ([addPhoneNumber isEqualToString:@"y"]) {
-                            
                             NSString* phoneNumber = [myInputCollector inputForPrompt:@"Enter the phone number: "];
                             NSString* tag = [myInputCollector inputForPrompt:@"Enter the label for this number: "];
                             [newContact addPhoneNumber:phoneNumber withTag:tag];
-                            
-                            
-                            
                         }
                         else if ([addPhoneNumber isEqualToString:@"n"]){
                             morePhoneNumbers = false;
                         }
                         else {
-                            NSLog(@"Invalid input:");
+                            NSLog(@"Invalid input");
                         }
                     } while (morePhoneNumbers);
-                    
                     
                     [myContactList addContact:newContact];
                     [myContactList printContactList];
@@ -101,6 +86,7 @@ int main(int argc, const char * argv[]) {
                         NSLog(@"Error: the 'show' command must be followed by an integer, i.e. 'show 3'");
                         break;
                     }
+                    
                     int searchId = [[arrayWithInputWords objectAtIndex:1] intValue];
                     [myContactList showContact:searchId];
                     break;
@@ -116,8 +102,15 @@ int main(int argc, const char * argv[]) {
                         NSLog(@"Error: the 'search' command must be followed by a search term, i.e. 'show Bob', 'show bob@gmail.com', 'show gmail'");
                         break;
                     }
+                    
                     NSString* searchString = [arrayWithInputWords objectAtIndex:1];
                     [myContactList searchContacts:searchString];
+                    break;
+                }
+                
+                case 6: {
+                    NSLog(@"");
+                    [myInputCollector printHistory];
                     break;
                 }
                 
@@ -127,44 +120,8 @@ int main(int argc, const char * argv[]) {
                     break;
                 }
             }
-            
-            
-            
         }
-        
         NSLog(@"Exiting Application. \n\n\nGoodbye!");
-        
-        
-        
-        
-        
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

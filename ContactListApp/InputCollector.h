@@ -12,9 +12,11 @@
 @interface InputCollector : NSObject
     
     @property NSString* userInput;
-    
-    
+    @property NSMutableArray* history;
+    @property int newest;
+    @property int numOfHistoryItemsToShow;
     
     -(NSString*) inputForPrompt: (NSString *) promptString;
+    -(void) printHistory;
 
 @end

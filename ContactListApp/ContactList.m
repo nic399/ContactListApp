@@ -19,7 +19,6 @@
         return self;
     }
 
-    
     -(void)addContact:(Contact *)newContact {
         [self.contactList addObject:newContact];
     }
@@ -27,7 +26,6 @@
     -(void)printContactList {
         for (int i = 0; i < [self.contactList count]; i++) {
             NSLog(@"%i: %@ ()", i, [[self.contactList objectAtIndex:i] name]);
-            
         }
     }
     
@@ -63,7 +61,5 @@
         }
         return false;
     }
-    
-    
     
 @end
