@@ -16,5 +16,7 @@
     -(void)addContact:(Contact*)newContact;
     -(void)printContactList;
     -(BOOL)showContact:(int)contactId;
+    -(void)searchContacts:(NSString*)search;
+    -(BOOL)emailUsed:(NSString*)search;
 
 @end

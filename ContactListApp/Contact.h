@@ -15,5 +15,6 @@
     
     -(instancetype)initWithName: (NSString*)name andEmail:(NSString *)email;
     -(void)printContact;
+    -(BOOL)containsString: (NSString*)searchString;
 
 @end

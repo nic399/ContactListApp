@@ -22,8 +22,6 @@
     
     -(void)addContact:(Contact *)newContact {
         [self.contactList addObject:newContact];
-//        Contact* tempContact = [self.contactList lastObject];
-//        tempContact.printContact;
     }
     
     -(void)printContactList {
@@ -47,7 +45,26 @@
         }
     }
     
+    -(void)searchContacts:(NSString *)search {
+        int numOfHits = 0;
+        for (int i = 0; i < [self.contactList count]; i++) {
+            Contact* tempContact = [self.contactList objectAtIndex:i];
+            if ([tempContact containsString:search]) {
+                [tempContact printContact];
+                numOfHits++;
+            }
+        }
+        NSLog(@"Search complete: %i matches found",numOfHits);
+    }
     
+    -(BOOL)emailUsed:(NSString *)search {
+        for (int i = 0; [self.contactList count]; i++) {
+            if ([[[self.contactList objectAtIndex:i] email] isEqualToString:search]) {
+                return true;
+            }
+        }
+        return false;
+    }
     
     
     

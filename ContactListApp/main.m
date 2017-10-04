@@ -13,8 +13,10 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        NSLog(@"Welcome to the CLI Contact App");
         BOOL stayOpen = true;
-        NSString* menuPrompt = @"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit Application";
+        NSString* menuPrompt = @"\nWhat would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nshow '#' - Show contact number '#'\nsearch 'searchPhrase' - Searches all contacts for 'searchPhrase'\nquit - Exit Application";
         NSDictionary * command = @{@"new":@"1", @"list":@"2", @"show":@"3", @"quit":@"4", @"search":@"5"};
         InputCollector* myInputCollector = [InputCollector new];
         NSString* userInput;
@@ -47,7 +49,9 @@ int main(int argc, const char * argv[]) {
             switch (userCommand) {
                 
                 case 1: { // add a new Contact
-                    Contact* newContact = [[Contact alloc] initWithName:[myInputCollector inputForPrompt:@"Enter the full name of the contact: "] andEmail:[myInputCollector inputForPrompt:@"Enter the email of the contact: "]];
+                    NSString* newEmail = [myInputCollector inputForPrompt:@"Enter the email of the contact: "];
+                    NSString* newName =[myInputCollector inputForPrompt:@"Enter the full name of the contact: "];
+                    Contact* newContact = [[Contact alloc] initWithName:newName andEmail:newEmail];
                     NSLog(@"%@: %@", newContact.name, newContact.email);
                     [myContactList addContact:newContact];
                     [myContactList printContactList];
@@ -75,7 +79,12 @@ int main(int argc, const char * argv[]) {
                 }
                 
                 case 5: { // search fo a contact
-                    
+                    if ([arrayWithInputWords count] < 2) {
+                        NSLog(@"Error: the 'search' command must be followed by a search term, i.e. 'show Bob', 'show bob@gmail.com', 'show gmail'");
+                        break;
+                    }
+                    NSString* searchString = [arrayWithInputWords objectAtIndex:1];
+                    [myContactList searchContacts:searchString];
                     break;
                 }
                 
@@ -89,6 +98,8 @@ int main(int argc, const char * argv[]) {
             
             
         }
+        
+        NSLog(@"Exiting Application. \n\n\nGoodbye!");
         
         
         

@@ -31,5 +31,13 @@
         NSLog(@"Name: %@\nEmail: %@", self.name, self.email);
     }
     
+    -(BOOL)containsString:(NSString *)searchString {
+        if ([self.name localizedCaseInsensitiveCompare:searchString] || [self.email localizedCaseInsensitiveCompare:searchString]) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     
 @end
