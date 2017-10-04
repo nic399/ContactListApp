@@ -50,6 +50,16 @@ int main(int argc, const char * argv[]) {
                 
                 case 1: { // add a new Contact
                     NSString* newEmail = [myInputCollector inputForPrompt:@"Enter the email of the contact: "];
+                    
+                    // check if the email entered is a duplicate
+                    if ([myContactList emailUsed:newEmail]) {
+                        NSLog(@"Error: email already assigned to a contact");
+                        break;
+                    }
+                    
+                    
+                    
+                    
                     NSString* newName =[myInputCollector inputForPrompt:@"Enter the full name of the contact: "];
                     Contact* newContact = [[Contact alloc] initWithName:newName andEmail:newEmail];
                     NSLog(@"%@: %@", newContact.name, newContact.email);
