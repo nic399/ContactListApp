@@ -8,13 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "InputCollector.h"
-
-void printMenu() {
-    NSLog(@"What would you like to do next?");
-    NSLog(@"new - Create a new contact");
-    NSLog(@"list - List all contacts");
-    NSLog(@"quit - Exit Application");
-}
+#import "Contact.h"
+#import "ContactList.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -24,6 +19,7 @@ int main(int argc, const char * argv[]) {
         InputCollector* myInputCollector = [InputCollector new];
         NSString* userInput;
         int userCommand;
+        ContactList* myContactList = [ContactList new];
         
         
         
@@ -42,9 +38,16 @@ int main(int argc, const char * argv[]) {
             
             
             switch (userCommand) {
-                case 4:
+                case 4:{
                 stayOpen = false;
                 break;
+                }
+                case 1:{
+                Contact* newContact = [[Contact alloc] initWithName:[myInputCollector inputForPrompt:@"Enter the full name of the contact: "] andEmail:[myInputCollector inputForPrompt:@"Enter the email of the contact: "]];
+                    NSLog(@"%@: %@", newContact.name, newContact.email);
+                    [myContactList addContact:newContact];
+                break;
+                }
                 
                 default:
                 break;
