@@ -15,5 +15,6 @@
     -(instancetype)init;
     -(void)addContact:(Contact*)newContact;
     -(void)printContactList;
+    -(BOOL)showContact:(int)contactId;
 
 @end

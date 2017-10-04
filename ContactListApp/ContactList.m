@@ -22,8 +22,8 @@
     
     -(void)addContact:(Contact *)newContact {
         [self.contactList addObject:newContact];
-        Contact* tempContact = [self.contactList lastObject];
-        tempContact.printContact;
+//        Contact* tempContact = [self.contactList lastObject];
+//        tempContact.printContact;
     }
     
     -(void)printContactList {
@@ -32,5 +32,23 @@
             
         }
     }
+    
+    -(BOOL)showContact:(int)contactId {
+        if (contactId > [self.contactList count]) {
+            NSLog(@"Contact not found");
+            return false;
+        }
+        else {
+            Contact* tempContact = [self.contactList objectAtIndex:contactId];
+            NSString* tempName = tempContact.name;
+            NSString* tempEmail = tempContact.email;
+            NSLog(@"\nName: %@\nEmail: %@", tempName, tempEmail);
+            return true;
+        }
+    }
+    
+    
+    
+    
     
 @end
